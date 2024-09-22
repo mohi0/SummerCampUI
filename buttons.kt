@@ -17,3 +17,23 @@ fun MToggleSwitch(value: Boolean, onToggle: (value: Boolean)->Unit){
         }
     }
 }
+
+
+@Composable
+fun MIconButton(onClick: () -> Unit, text: String, icon: Painter, iconDescription: String?, textColor: Color, bgColor: Color, iconHeight: Dp, iconWidth: Dp, textSize: TextUnit){
+    Box(Modifier.clickable(
+        interactionSource = MutableInteractionSource(),
+        indication = null, onClick = onClick
+        )){
+        Row(
+            Modifier
+                .background(bgColor)
+                .padding(horizontal = (iconWidth / 2), vertical = (iconHeight / 2)), verticalAlignment = Alignment.CenterVertically){
+            Text(text = text, color = textColor, fontSize = textSize)
+            Spacer(Modifier.width(iconWidth.div(2)))
+            Image(icon, "icon", modifier = Modifier
+                .height(iconHeight)
+                .width(iconWidth))
+        }
+    }
+}
