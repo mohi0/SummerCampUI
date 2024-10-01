@@ -2,10 +2,13 @@
 A repository for user interfaces for JetppackCompose, SwiftUI
 Provides Custom Styles, Styling methods, Themes and Components
 
-## Kotlin Jertpack Compose
-For styling the composables for Multi Platform and android 
+> Under Development
 
-##SwiftUI 
-For iOS, iPadOS, WatchOS, MacOS and TvOS
+## Kotlin Jertpack Compose
+For styling the composables for Multi Platform and Android Platform
+
+
+## SwiftUI 
+For iOS, iPadOS
 
 
