@@ -41,3 +41,30 @@ fun MOTPField(onComplete: (value: List<String>) -> Unit, type: OTP_VIEWTYPE, dig
         }
     }
 }
+
+@Composable
+fun MMeteredTextInput(modifier: Modifier, maxLen: Int, value: String, onValueChange: (value: String) -> Unit, label: String? = null, onComplete: (value: String) -> Unit){
+    val charLen : MutableState<Int> = remember { mutableIntStateOf(0) }
+    val progressValue : MutableState<Float> = remember { mutableFloatStateOf(0f) }
+    Column(modifier = modifier.padding(10.dp)){
+        if (label != null) {
+            BasicText(modifier = Modifier.padding(vertical = 10.dp), text = label)
+        }
+        BasicTextField(value = value,
+            onValueChange = { onValueChange(it);
+                            charLen.value = it.length
+                            progressValue.value = it.length.toFloat() / maxLen
+                            Log.d("LOG LENGTH", charLen.toString())
+                            if(it.length == charLen.value){
+                                onComplete(it)
+                            }
+                            }, modifier = Modifier
+                .fillMaxWidth(1f)
+                .border(1.dp, Color.Black)
+                .padding(6.dp), textStyle = TextStyle(Color.Black, 20.sp))
+        Row(modifier.fillMaxWidth(1f), verticalAlignment = Alignment.CenterVertically){
+            LinearProgressIndicator(progress = progressValue.value, modifier = Modifier.weight(0.8f))
+            Text(text = "${maxLen - charLen.value}", modifier = Modifier.weight(0.2f).padding(horizontal = 8.dp))
+        }
+    }
+}
