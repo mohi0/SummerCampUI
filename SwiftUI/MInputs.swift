@@ -19,3 +19,20 @@ struct MMeteredTextInput: View{
         }
     }
 }
+
+
+struct MConfirmView: View {
+    var onMatch: () -> Void
+    var label: String
+    @State var str: String
+    var body: some View {
+        VStack{
+            Text(label)
+            TextField("", text: $str).onChange(of: str, perform: { newValue in
+                if(newValue == str){
+                    onMatch()
+                }
+            })
+        }
+    }
+}
